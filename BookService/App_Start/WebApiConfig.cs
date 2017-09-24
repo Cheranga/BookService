@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Dispatcher;
+using BookService.Infrastructure;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace BookService
 {
@@ -19,6 +23,19 @@ namespace BookService
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            //
+            // JSON formatter settings
+            //
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            //
+            // Enable CORS
+            //
+            config.EnableCors();
+            //
+            // Set versioning
+            //
+            config.Services.Replace(typeof(IHttpControllerSelector), new ApiControllerSelector(config));
         }
     }
 }
