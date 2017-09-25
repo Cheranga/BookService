@@ -13,7 +13,16 @@ namespace BookService.Controllers
     /// </summary>
     public class BooksV2Controller : ApiController
     {
-        private BookServiceContext db = new BookServiceContext();
+        private readonly BookServiceContext db;
+
+        /// <summary>
+        /// This will create the books controller version 2
+        /// </summary>
+        /// <param name="context">The book service context, this will be injected</param>
+        public BooksV2Controller(BookServiceContext context)
+        {
+            db = context;
+        }
 
         /// <summary>
         /// HTTP GET request to retrieve all the books
