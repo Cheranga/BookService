@@ -1,16 +1,20 @@
-using System.Data.Entity.Migrations;
-using BookService.Models;
+using BookService.Business.Models;
 
-namespace BookService.Migrations
+namespace BookService.Infrastructure.DataAccess.EntityFramework.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<BookServiceContext>
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<BookService.Infrastructure.DataAccess.EntityFramework.BookServiceContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(BookServiceContext context)
+        protected override void Seed(BookService.Infrastructure.DataAccess.EntityFramework.BookServiceContext context)
         {
             SeedAuthors(context);
             SeedBooks(context);
@@ -24,9 +28,9 @@ namespace BookService.Migrations
             }
 
             context.Authors.AddOrUpdate(x => x.Id,
-                new Author {Id = 1, Name = "Jane Austen"},
-                new Author {Id = 2, Name = "Charles Dickens"},
-                new Author {Id = 3, Name = "Miguel de Cervantes"}
+                new Author { Id = 1, Name = "Jane Austen" },
+                new Author { Id = 2, Name = "Charles Dickens" },
+                new Author { Id = 3, Name = "Miguel de Cervantes" }
                 );
         }
 

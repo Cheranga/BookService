@@ -1,6 +1,6 @@
 using System;
 
-namespace BookService.Areas.HelpPage
+namespace BookService.Areas.HelpPage.SampleGeneration
 {
     /// <summary>
     /// This represents an image sample on the help page. There's a display template named ImageSample associated with this class.

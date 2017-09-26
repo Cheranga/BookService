@@ -10,6 +10,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookService.Business.Models", "BookService.Business.Models\BookService.Business.Models.csproj", "{4A30776A-ABA3-4404-95C5-6C60C4274C1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookService.Infrastructure.Shared", "BookService.Infrastructure.Shared\BookService.Infrastructure.Shared.csproj", "{5C12582E-A05A-40C1-9554-4FB2946B2DA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookService.Infrastructure.DataAccess", "BookService.Infrastructure.DataAccess\BookService.Infrastructure.DataAccess.csproj", "{9D9A421A-9641-4D43-918A-5D2B14FE49B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookService.Infrastructure.DataAccess.EntityFramework", "BookService.Infrastructure.DataAccess.EntityFramework\BookService.Infrastructure.DataAccess.EntityFramework.csproj", "{7FA8BEDA-17E9-4F02-96CB-8A635FE89890}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookService.Business.Services", "BookService.Business.Services\BookService.Business.Services.csproj", "{DEA5CAE6-61A1-4FAF-8660-046F4FC2F7FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +30,26 @@ Global
 		{1163691F-1D7D-44D1-968E-365FFD4F63B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1163691F-1D7D-44D1-968E-365FFD4F63B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1163691F-1D7D-44D1-968E-365FFD4F63B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A30776A-ABA3-4404-95C5-6C60C4274C1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A30776A-ABA3-4404-95C5-6C60C4274C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A30776A-ABA3-4404-95C5-6C60C4274C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A30776A-ABA3-4404-95C5-6C60C4274C1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C12582E-A05A-40C1-9554-4FB2946B2DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C12582E-A05A-40C1-9554-4FB2946B2DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C12582E-A05A-40C1-9554-4FB2946B2DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C12582E-A05A-40C1-9554-4FB2946B2DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D9A421A-9641-4D43-918A-5D2B14FE49B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D9A421A-9641-4D43-918A-5D2B14FE49B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D9A421A-9641-4D43-918A-5D2B14FE49B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D9A421A-9641-4D43-918A-5D2B14FE49B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FA8BEDA-17E9-4F02-96CB-8A635FE89890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FA8BEDA-17E9-4F02-96CB-8A635FE89890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FA8BEDA-17E9-4F02-96CB-8A635FE89890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FA8BEDA-17E9-4F02-96CB-8A635FE89890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEA5CAE6-61A1-4FAF-8660-046F4FC2F7FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEA5CAE6-61A1-4FAF-8660-046F4FC2F7FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEA5CAE6-61A1-4FAF-8660-046F4FC2F7FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEA5CAE6-61A1-4FAF-8660-046F4FC2F7FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

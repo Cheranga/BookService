@@ -1,11 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BookService.Models
+﻿namespace BookService.Business.Models
 {
     public class Book
     {
         public int Id { get; set; }
-        [Required]
+        //[Required]
         public string Title { get; set; }
         public int Year { get; set; }
         public decimal Price { get; set; }

@@ -166,7 +166,9 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -205,21 +207,10 @@
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\BooksV2Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DTO\BookDetailDto.cs" />
-    <Compile Include="DTO\BookDto.cs" />
-    <Compile Include="DTO\BookDtoV2.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ApiControllerSelector.cs" />
-    <Compile Include="Migrations\201709241747057_Initial.cs" />
-    <Compile Include="Migrations\201709241747057_Initial.Designer.cs">
-      <DependentUpon>201709241747057_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Author.cs" />
-    <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\BookServiceContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -277,17 +268,26 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709241747057_Initial.resx">
-      <DependentUpon>201709241747057_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookService.Business.Models\BookService.Business.Models.csproj">
+      <Project>{4A30776A-ABA3-4404-95C5-6C60C4274C1B}</Project>
+      <Name>BookService.Business.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookService.Business.Services\BookService.Business.Services.csproj">
+      <Project>{DEA5CAE6-61A1-4FAF-8660-046F4FC2F7FD}</Project>
+      <Name>BookService.Business.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookService.Infrastructure.DataAccess.EntityFramework\BookService.Infrastructure.DataAccess.EntityFramework.csproj">
+      <Project>{7FA8BEDA-17E9-4F02-96CB-8A635FE89890}</Project>
+      <Name>BookService.Infrastructure.DataAccess.EntityFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

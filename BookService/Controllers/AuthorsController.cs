@@ -9,7 +9,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using BookService.Models;
+using BookService.Business.Models;
+using BookService.Infrastructure.DataAccess.EntityFramework;
 
 namespace BookService.Controllers
 {

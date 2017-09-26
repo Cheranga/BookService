@@ -1,4 +1,4 @@
-namespace BookService.Migrations
+namespace BookService.Infrastructure.DataAccess.EntityFramework.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -12,7 +12,7 @@ namespace BookService.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
+                        Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -21,7 +21,7 @@ namespace BookService.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(nullable: false),
+                        Title = c.String(),
                         Year = c.Int(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Genre = c.String(),

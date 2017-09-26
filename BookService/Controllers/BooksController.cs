@@ -1,76 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using BookService.DTO;
-using BookService.Models;
+using BookService.Business.Models;
+using BookService.Business.Services.DTO;
 
 namespace BookService.Controllers
 {
     /// <summary>
-    /// Endpoint for Books
+    ///     Endpoint for Books
     /// </summary>
     public class BooksController : ApiController
     {
-        private readonly BookServiceContext db;
+        private readonly Business.Services.BookService _bookService;
 
         /// <summary>
-        /// Creates a books controller
+        ///     Creates a books controller
         /// </summary>
-        /// <param name="context">The database context, this will be injected</param>
-        public BooksController(BookServiceContext context)
+        /// <param name="bookService">The application service to handle books</param>
+        public BooksController(Business.Services.BookService bookService)
         {
-            db = context;
+            _bookService = bookService;
         }
 
         /// <summary>
-        /// HTTP GET request to retrieve all the books
+        ///     HTTP GET request to retrieve all the books
         /// </summary>
         /// <returns>All the books</returns>
-        public IQueryable<BookDto> GetBooks()
+        public async Task<IQueryable<BookDto>> GetBooksAsync()
         {
-            return db.Books.Select(x=> new BookDto
-            {
-                Id = x.Id,
-                AuthorName = x.Author.Name,
-                Title = x.Title
-            });
+            var books = await _bookService.GetAllAsync();
+            return books.AsQueryable();
         }
 
         // GET: api/Books/5
-        [ResponseType(typeof(BookDetailDto))]
-        public async Task<IHttpActionResult> GetBook(int id)
+        /// <summary>
+        ///     Gets a book by id
+        /// </summary>
+        /// <param name="id">The required book id</param>
+        /// <returns>If exists returns the book by id, otherwise null</returns>
+        [ResponseType(typeof (BookDetailDto))]
+        public async Task<IHttpActionResult> GetBookAsync(int id)
         {
-            var bookDetail = await db.Books.Include(x=>x.Author)
-                .Select(x=>new BookDetailDto
-                {
-                    Id = x.Id,
-                    AuthorName = x.Author.Name,
-                    Title = x.Title,
-                    Genre = x.Genre,
-                    Price = x.Price,
-                    Year = x.Year
-                })
-                .SingleOrDefaultAsync(x=>x.Id == id);
-
-            if (bookDetail == null)
+            var book = await _bookService.GetBookByIdAsync(id);
+            if (book == null)
             {
                 return NotFound();
             }
 
-            return Ok(bookDetail);
+            return Ok(book);
         }
 
         // PUT: api/Books/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutBook(int id, Book book)
+        /// <summary>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="book"></param>
+        /// <returns></returns>
+        [ResponseType(typeof (void))]
+        public async Task<IHttpActionResult> PutBookAsync(int id, Book book)
         {
             if (!ModelState.IsValid)
             {
@@ -82,79 +72,78 @@ namespace BookService.Controllers
                 return BadRequest();
             }
 
-            db.Entry(book).State = EntityState.Modified;
-
             try
             {
-                await db.SaveChangesAsync();
+                await _bookService.UpdateBook(book);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(id))
+                if (!await BookExistsAsync(id))
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Books
-        [ResponseType(typeof(BookDto))]
-        public async Task<IHttpActionResult> PostBook(Book book)
+        /// <summary>
+        /// </summary>
+        /// <param name="book"></param>
+        /// <returns></returns>
+        [ResponseType(typeof (BookDto))]
+        public async Task<IHttpActionResult> PostBookAsync(Book book)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Books.Add(book);
-            await db.SaveChangesAsync();
-
-            db.Entry(book).Reference(x=>x.Author).Load();
-
-            var bookDto = new BookDto
-            {
-                Id = book.Id,
-                AuthorName = book.Author.Name,
-                Title = book.Title
-            };
+            var bookDto = await _bookService.AddBookAsync(book);
 
             return CreatedAtRoute("DefaultApi", new {id = bookDto.Id}, bookDto);
         }
 
         // DELETE: api/Books/5
-        [ResponseType(typeof(Book))]
-        public async Task<IHttpActionResult> DeleteBook(int id)
+        /// <summary>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IHttpActionResult> DeleteBookAsync(int id)
         {
-            Book book = await db.Books.FindAsync(id);
+            var book = await _bookService.GetBookByIdAsync(id);
             if (book == null)
             {
                 return NotFound();
             }
 
-            db.Books.Remove(book);
-            await db.SaveChangesAsync();
+            await _bookService.DeleteBookById(id);
 
             return Ok(book);
         }
 
+        /// <summary>
+        ///     Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">
+        ///     true to release both managed and unmanaged resources; false to release only unmanaged
+        ///     resources.
+        /// </param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
+            //if (disposing)
+            //{
+            //    db.Dispose();
+            //}
             base.Dispose(disposing);
         }
 
-        private bool BookExists(int id)
+        private async Task<bool> BookExistsAsync(int id)
         {
-            return db.Books.Count(e => e.Id == id) > 0;
+            return await _bookService.GetBookByIdAsync(id) != null;
         }
     }
 }

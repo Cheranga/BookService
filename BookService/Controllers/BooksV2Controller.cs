@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using BookService.DTO;
-using BookService.Models;
+using BookService.Business.Services.DTO;
+using BookService.Infrastructure.DataAccess.EntityFramework;
 
 namespace BookService.Controllers
 {

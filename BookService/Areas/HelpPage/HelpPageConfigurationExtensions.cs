@@ -13,6 +13,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using BookService.Areas.HelpPage.ModelDescriptions;
 using BookService.Areas.HelpPage.Models;
+using BookService.Areas.HelpPage.SampleGeneration;
 
 namespace BookService.Areas.HelpPage
 {

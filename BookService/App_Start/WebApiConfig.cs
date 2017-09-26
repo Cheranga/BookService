@@ -8,7 +8,7 @@ using System.Web.Http.Dispatcher;
 using Autofac;
 using Autofac.Integration.WebApi;
 using BookService.Infrastructure;
-using BookService.Models;
+using BookService.Infrastructure.DataAccess.EntityFramework;
 using CacheCow.Server;
 using CacheCow.Server.EntityTagStore.SqlServer;
 using Newtonsoft.Json;

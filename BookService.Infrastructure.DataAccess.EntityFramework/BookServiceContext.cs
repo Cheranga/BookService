@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Diagnostics;
-using System.Linq;
-using System.Web;
+using BookService.Business.Models;
 
-namespace BookService.Models
+namespace BookService.Infrastructure.DataAccess.EntityFramework
 {
     public class BookServiceContext : DbContext
     {
@@ -21,8 +18,8 @@ namespace BookService.Models
             Database.Log = s => Debug.WriteLine(s);
         }
 
-        public System.Data.Entity.DbSet<BookService.Models.Author> Authors { get; set; }
+        public System.Data.Entity.DbSet<Author> Authors { get; set; }
 
-        public System.Data.Entity.DbSet<BookService.Models.Book> Books { get; set; }
+        public System.Data.Entity.DbSet<Book> Books { get; set; }
     }
 }
